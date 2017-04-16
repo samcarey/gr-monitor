@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<block>
+  <name>Extract Freqs</name>
+  <key>monitor_extract_bins</key>
+  <category>[monitor]</category>
+  <import>import monitor</import>
+  <make>monitor.extract_bins($vlen_in, $indices, $weights)</make>
+  <param>
+    <name>Vec Len In</name>
+    <key>vlen_in</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Indices</name>
+    <key>indices</key>
+    <type>int_vector</type>
+  </param>
+  <param>
+    <name>Weights</name>
+    <key>weights</key>
+    <type>float_vector</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+    <vlen>$vlen_in</vlen>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <vlen>len($indices)</vlen>
+  </source>
+</block>
