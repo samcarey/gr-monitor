@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<block>
+  <name>Vector to SQLite</name>
+  <key>monitor_vec2sqlite</key>
+  <category>[monitor]</category>
+  <import>import monitor</import>
+  <make>monitor.vec2sqlite($type, $vlen, $filename, $table_name, $column_names, $max_rows)</make>
+  <param>
+    <name>Item Type</name>
+    <key>type</key>
+    <value>float</value>
+    <type>enum</type>
+    <option>
+        <name>Byte</name>
+        <key>byte</key>
+        <opt>tv:blocks.byte_t</opt>
+    </option>
+    <option>
+        <name>Complex</name>
+        <key>complex</key>
+        <opt>tv:blocks.complex_t</opt>
+    </option>
+    <option>
+        <name>Float</name>
+        <key>float</key>
+        <opt>tv:blocks.float_t</opt>
+    </option>
+  </param>
+  <param>
+      <name>Vec Len</name>
+      <key>vlen</key>
+      <type>int</type>
+  </param>       
+  <param>
+    <name>Filename</name>
+    <key>filename</key>
+    <type>file_save</type>
+  </param>
+  <param>
+    <name>Table Name</name>
+    <key>table_name</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Column Names</name>
+    <key>column_names</key>
+    <value>[]</value>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>Max Rows</name>
+    <key>max_rows</key>
+    <type>int</type>
+  </param> 
+  <sink>
+    <name>in</name>
+    <type>$type</type>
+    <vlen>$vlen</vlen>
+  </sink>
+</block>

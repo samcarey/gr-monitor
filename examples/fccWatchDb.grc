@@ -30,7 +30,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 8)</value>
+      <value>(8, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -93,7 +93,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 132)</value>
+      <value>(720, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -120,7 +120,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 92)</value>
+      <value>(176, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -147,7 +147,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 12)</value>
+      <value>(176, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -174,7 +174,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 196)</value>
+      <value>(600, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -201,7 +201,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 132)</value>
+      <value>(600, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -228,7 +228,34 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(128, 92)</value>
+      <value>(288, 132)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fccFreqNames</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[('_' + s + 'M').replace('.','_') for s in map(str,(fccFreqs*1e-6))]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(288, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -240,7 +267,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1e6*np.array([461.025,461.075,461.1,462.155,462.375,462.4,464.5,464.55,464.6,464.625,464.65,464.725,464.75,464.75,464.75,464.75])</value>
+      <value>1e6*np.array([461.025,461.075,461.1,462.155,462.375,462.4,464.5,464.55,464.6,464.625,464.65,464.725,464.75])</value>
     </param>
   </block>
   <block>
@@ -255,7 +282,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(408, 12)</value>
+      <value>(176, 132)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -282,7 +309,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(128, 156)</value>
+      <value>(288, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -309,7 +336,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 92)</value>
+      <value>(8, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -336,7 +363,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(432, 196)</value>
+      <value>(456, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -363,7 +390,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(432, 132)</value>
+      <value>(456, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -394,7 +421,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 12)</value>
+      <value>(920, 4)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -457,7 +484,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 12)</value>
+      <value>(800, 4)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -524,7 +551,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 436)</value>
+      <value>(568, 340)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -563,62 +590,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1056, 428)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_keep_one_in_n_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>n</key>
-      <value>decimation_post</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>len(indices)</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_keep_one_in_n</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 428)</value>
+      <value>(192, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -669,7 +645,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1192, 420)</value>
+      <value>(1056, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -681,7 +657,7 @@
     </param>
     <param>
       <key>maxoutbuf</key>
-      <value>8</value>
+      <value>64</value>
     </param>
     <param>
       <key>minoutbuf</key>
@@ -720,7 +696,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 436)</value>
+      <value>(40, 340)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -779,7 +755,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(352, 404)</value>
+      <value>(352, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -795,7 +771,7 @@
     </param>
     <param>
       <key>maxoutbuf</key>
-      <value>8</value>
+      <value>10</value>
     </param>
     <param>
       <key>minoutbuf</key>
@@ -830,7 +806,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(200, 20)</value>
+      <value>(8, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -865,7 +841,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 420)</value>
+      <value>(736, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -897,6 +873,61 @@
     </param>
   </block>
   <block>
+    <key>monitor_vec2sqlite</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>column_names</key>
+      <value>fccFreqNames</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>filename</key>
+      <value>/home/samcarey/rfnoc/src/gr-monitor/examples/fccFreqs0.db</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1144, 444)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>monitor_vec2sqlite_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>max_rows</key>
+      <value>300</value>
+    </param>
+    <param>
+      <key>table_name</key>
+      <value>table1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>len(indices)</value>
+    </param>
+  </block>
+  <block>
     <key>qtgui_vector_sink_f</key>
     <param>
       <key>autoscale</key>
@@ -924,7 +955,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1328, 380)</value>
+      <value>(1192, 284)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1203,7 +1234,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1224, 276)</value>
+      <value>(272, 212)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1414,7 +1445,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 428)</value>
+      <value>(936, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1435,57 +1466,6 @@
     <param>
       <key>vlen</key>
       <value>len(indices)</value>
-    </param>
-  </block>
-  <block>
-    <key>sql_msg_to_table</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>database</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1168, 108)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>host</key>
-      <value>"127.0.0.1"</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>sql_msg_to_table_0</value>
-    </param>
-    <param>
-      <key>password</key>
-      <value></value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>table</key>
-      <value></value>
-    </param>
-    <param>
-      <key>user</key>
-      <value></value>
     </param>
   </block>
   <block>
@@ -2672,7 +2652,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 260)</value>
+      <value>(16, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2834,14 +2814,14 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_keep_one_in_n_0</source_block_id>
-    <sink_block_id>blocks_nlog10_ff_0</sink_block_id>
+    <source_block_id>blocks_keep_one_in_n_0_0</source_block_id>
+    <sink_block_id>fft_vxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_keep_one_in_n_0_0</source_block_id>
-    <sink_block_id>fft_vxx_0</sink_block_id>
+    <source_block_id>blocks_nlog10_ff_0</source_block_id>
+    <sink_block_id>monitor_vec2sqlite_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -2871,7 +2851,7 @@
   </connection>
   <connection>
     <source_block_id>spr_vec_iir_0</source_block_id>
-    <sink_block_id>blocks_keep_one_in_n_0</sink_block_id>
+    <sink_block_id>blocks_nlog10_ff_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

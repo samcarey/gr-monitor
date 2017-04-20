@@ -14,3 +14,4 @@
 
 %include "monitor/extract_bins.h"
 GR_SWIG_BLOCK_MAGIC2(monitor, extract_bins);
+

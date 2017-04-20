@@ -31,4 +31,5 @@ except ImportError:
 	pass
 
 # import any pure python here
+from vec2sqlite import vec2sqlite
 #

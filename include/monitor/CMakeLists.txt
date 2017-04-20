@@ -22,5 +22,6 @@
 ########################################################################
 install(FILES
     api.h
-    extract_bins.h DESTINATION include/monitor
+    extract_bins.h
+    DESTINATION include/monitor
 )
