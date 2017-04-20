@@ -55,4 +55,4 @@ class vec2sqlite(gr.sync_block):
 	in0 = input_items[0]
 	for i in range(np.shape(in0)[0]):
 		self.insert_vec_into_table(in0[i][:].reshape(self.vlen))
-        return len(input_items[0])
+	return len(input_items[0])
