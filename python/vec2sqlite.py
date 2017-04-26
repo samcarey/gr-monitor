@@ -31,6 +31,10 @@ class vec2sqlite(gr.sync_block):
         gr.sync_block.__init__(self, name="vec2sqlite", in_sig=[(np.float32,vlen)], out_sig=None)
             
         self.vlen = vlen
+        column_names_init = [(s + ' REAL') for s in column_names]
+        column_names_init.insert(0,'ID INTEGER PRIMARY KEY AUTOINCREMENT')
+        cols_init = '(' + ', '.join(column_names_init) + ')'
+
         cols = '(' + ', '.join(column_names) + ')'
         question_marks = '(' + ', '.join(['?']*len(column_names)) + ')'
         self.insert_cmd = 'INSERT INTO ' + table_name + ' ' + cols + ' VALUES ' + question_marks
@@ -41,15 +45,22 @@ class vec2sqlite(gr.sync_block):
         self.c = self.conn.cursor()
         self.conn.text_factory = str
         self.c.execute('PRAGMA journal_mode=WAL')
-        
+        self.checkpoint_counter = 0
+        self.c.execute('PRAGMA wal_autocheckpoint = 0')
+
         # Create table if we haven't already
-        self.c.execute('CREATE TABLE IF NOT EXISTS ' + table_name + ' ' + cols)
+        self.c.execute('CREATE TABLE IF NOT EXISTS ' + table_name + ' ' + cols_init)
         self.conn.commit()
 
     def insert_vec_into_table(self, vals):
             self.c.execute(self.insert_cmd, vals.tolist())
             self.c.execute(self.limit_cmd)
             self.conn.commit()
+
+            self.checkpoint_counter = self.checkpoint_counter + 1
+            if(self.checkpoint_counter > 40):
+                self.c.execute('PRAGMA wal_checkpoint(PASSIVE)')
+                self.checkpoint_counter = 0
 
     def work(self, input_items, output_items):
 	in0 = input_items[0]

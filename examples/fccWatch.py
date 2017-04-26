@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Fccwatch
-# Generated: Thu Apr 20 19:39:40 2017
+# Generated: Wed Apr 26 21:00:53 2017
 ##################################################
 
 from gnuradio import blocks
@@ -29,15 +29,19 @@ class fccWatch(gr.top_block):
         # Variables
         ##################################################
         self.spec_samp_rate_pre = spec_samp_rate_pre = 4
+        self.max_hours = max_hours = 24*7
         self.spec_samp_rate_post = spec_samp_rate_post = 1
+        self.max_rows = max_rows = max_hours*60*60*spec_samp_rate_pre
         self.fccFreqs = fccFreqs = 1e6*np.array([461.025,461.075,461.1,462.155,462.375,462.4,464.5,464.55,464.6,464.625,464.65,464.725,464.75])
         self.samp_rate = samp_rate = 4e6
+        self.max_entries = max_entries = max_rows*len(fccFreqs)
         self.fft_len = fft_len = 1024
         self.decimation_post = decimation_post = int(np.round(spec_samp_rate_pre/spec_samp_rate_post))
         self.center_freq = center_freq = (np.max(fccFreqs)+np.min(fccFreqs))/2
         self.indices = indices = np.round((fccFreqs - center_freq)*fft_len/samp_rate+fft_len/2).astype(int)
         self.fccFreqNames = fccFreqNames = [('_' + s + 'M').replace('.','_') for s in map(str,(fccFreqs*1e-6))]
         self.decimation_pre = decimation_pre = int(np.round(samp_rate/fft_len/spec_samp_rate_pre))
+        self.database_GB = database_GB = max_entries*10.5*1e-9
         self.bw = bw = np.max(fccFreqs)-np.min(fccFreqs)
         self.alpha = alpha = 1/float(decimation_post)
 
@@ -55,7 +59,7 @@ class fccWatch(gr.top_block):
         self.uhd_usrp_source_0.set_center_freq(center_freq, 0)
         self.uhd_usrp_source_0.set_gain(31.5, 0)
         self.uhd_usrp_source_0.set_antenna('RX2', 0)
-        self.monitor_vec2sqlite_0 = monitor.vec2sqlite(float, len(indices), '/home/pi/sdr/pybombs_default/src/gr-monitor/examples/fccFreqs0.db', 'table1', fccFreqNames, 300)
+        self.monitor_vec2sqlite_0 = monitor.vec2sqlite(float, len(indices), '/home/pi/fccFreqs.db', 'table1', fccFreqNames, max_rows)
         self.monitor_extract_bins_0 = monitor.extract_bins(fft_len, (indices), ([0.3, 0.3, 0.3]))
         (self.monitor_extract_bins_0).set_max_output_buffer(8)
         self.fft_vxx_0 = fft.fft_vcc(fft_len, True, (window.blackmanharris(1024)), True, 1)
@@ -84,8 +88,16 @@ class fccWatch(gr.top_block):
 
     def set_spec_samp_rate_pre(self, spec_samp_rate_pre):
         self.spec_samp_rate_pre = spec_samp_rate_pre
+        self.set_max_rows(self.max_hours*60*60*self.spec_samp_rate_pre)
         self.set_decimation_pre(int(np.round(self.samp_rate/self.fft_len/self.spec_samp_rate_pre)))
         self.set_decimation_post(int(np.round(self.spec_samp_rate_pre/self.spec_samp_rate_post)))
+
+    def get_max_hours(self):
+        return self.max_hours
+
+    def set_max_hours(self, max_hours):
+        self.max_hours = max_hours
+        self.set_max_rows(self.max_hours*60*60*self.spec_samp_rate_pre)
 
     def get_spec_samp_rate_post(self):
         return self.spec_samp_rate_post
@@ -93,6 +105,13 @@ class fccWatch(gr.top_block):
     def set_spec_samp_rate_post(self, spec_samp_rate_post):
         self.spec_samp_rate_post = spec_samp_rate_post
         self.set_decimation_post(int(np.round(self.spec_samp_rate_pre/self.spec_samp_rate_post)))
+
+    def get_max_rows(self):
+        return self.max_rows
+
+    def set_max_rows(self, max_rows):
+        self.max_rows = max_rows
+        self.set_max_entries(self.max_rows*len(self.fccFreqs))
 
     def get_fccFreqs(self):
         return self.fccFreqs
@@ -102,6 +121,7 @@ class fccWatch(gr.top_block):
         self.set_indices(np.round((self.fccFreqs - self.center_freq)*self.fft_len/self.samp_rate+self.fft_len/2).astype(int))
         self.set_fccFreqNames([('_' + s + 'M').replace('.','_') for s in map(str,(self.fccFreqs*1e-6))])
         self.set_center_freq((np.max(self.fccFreqs)+np.min(self.fccFreqs))/2)
+        self.set_max_entries(self.max_rows*len(self.fccFreqs))
         self.set_bw(np.max(self.fccFreqs)-np.min(self.fccFreqs))
 
     def get_samp_rate(self):
@@ -112,6 +132,13 @@ class fccWatch(gr.top_block):
         self.set_indices(np.round((self.fccFreqs - self.center_freq)*self.fft_len/self.samp_rate+self.fft_len/2).astype(int))
         self.set_decimation_pre(int(np.round(self.samp_rate/self.fft_len/self.spec_samp_rate_pre)))
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
+
+    def get_max_entries(self):
+        return self.max_entries
+
+    def set_max_entries(self, max_entries):
+        self.max_entries = max_entries
+        self.set_database_GB(self.max_entries*10.5*1e-9)
 
     def get_fft_len(self):
         return self.fft_len
@@ -154,6 +181,12 @@ class fccWatch(gr.top_block):
     def set_decimation_pre(self, decimation_pre):
         self.decimation_pre = decimation_pre
         self.blocks_keep_one_in_n_0_0.set_n(self.decimation_pre)
+
+    def get_database_GB(self):
+        return self.database_GB
+
+    def set_database_GB(self, database_GB):
+        self.database_GB = database_GB
 
     def get_bw(self):
         return self.bw
